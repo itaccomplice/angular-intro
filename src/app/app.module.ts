@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FirstFeatureModule } from './features/first-feature/first-feature.module';
 import { StudentFeatureModule } from './features/student-feature/student-feature.module';
+import { ServiceModule } from './service/service.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,8 +15,10 @@ import { StudentFeatureModule } from './features/student-feature/student-feature
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FirstFeatureModule,
     StudentFeatureModule,
+    ServiceModule,
     routing
   ],
   providers: [],

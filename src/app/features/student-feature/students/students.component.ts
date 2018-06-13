@@ -1,3 +1,5 @@
+import { Student } from '../../../service/student';
+import { StudentsService } from '../../../service/students.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor() { }
+  students: Student[];
+
+  constructor(private studentsService: StudentsService) {
+    this.studentsService.getStudents().subscribe(
+      students => this.students = students
+    );
+  }
 
   ngOnInit() {
   }
-
 }
