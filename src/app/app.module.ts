@@ -4,6 +4,7 @@ import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FirstFeatureModule } from './features/first-feature/first-feature.module';
+import { StudentFeatureModule } from './features/student-feature/student-feature.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FirstFeatureModule } from './features/first-feature/first-feature.modul
   imports: [
     BrowserModule,
     FirstFeatureModule,
+    StudentFeatureModule,
     routing
   ],
   providers: [],
