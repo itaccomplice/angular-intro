@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -7,25 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
 
-  minutes: number;
-  seconds: number;
+  @Input() minutes: number;
+  @Input() seconds: number;
+  minCount: number;
+  secCount: number;
   isPaused: boolean;
   buttonLabel: string;
   
   constructor(){
-    this.reset();
-    setInterval(() => this.tick(), 1000);
+
   }
 
   ngOnInit() {
+    this.reset();
+    setInterval(() => this.tick(), 1000);
   }
 
   private tick() {
     if(!this.isPaused) {
       this.buttonLabel = 'Pause';
-      if(--this.seconds < 0) {
-        this.seconds = 59;
-        if(--this.minutes < 0) {
+      if(--this.secCount < 0) {
+        this.secCount = 59;
+        if(--this.minCount < 0) {
           this.reset();
         }
       }
@@ -35,14 +38,14 @@ export class TimerComponent implements OnInit {
   togglePause() {
     this.isPaused = !this.isPaused;
     // if countdown has started
-    if (this.minutes < 24 || this.seconds < 59) {
+    if (this.minCount < this.minutes || this.secCount !== this.seconds) {
       this.buttonLabel = this.isPaused ? 'Resume' : 'Pause';
     }
   }
 
   reset() {
-    this.minutes = 24;
-    this.seconds = 59;
+    this.minCount = this.minutes;
+    this.secCount = this.seconds;
     this.buttonLabel = 'Start';
     this.togglePause();
   }
