@@ -14,4 +14,8 @@ export class TimerPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCountdownCompleted(): void {
+    alert('Time up !');
+  }
+
 }
